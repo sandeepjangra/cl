@@ -2,7 +2,10 @@
 
 #Let's print something
 print("hello world")
+cat("hello word")
 
+i=1
+paste("concatenate with",i)
 #Get the working directory path
 getwd()
 
