@@ -4,6 +4,7 @@
 print("hello world")
 cat("hello word")
 
+#the useful paste command
 i=1
 paste("concatenate with",i)
 #Get the working directory path
