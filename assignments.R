@@ -31,6 +31,10 @@ a) Load the  mtcars dataset provided by R, and convert it so that its class is t
 b) Select the mpg, cyl and wt columns.
 c) Filter the selected subset and keep only the records with cyl equal to 8. Then sort the records in ascending order in mpg and in descending order to wt.
 
+12/10/2021
+------------------
+For assignments check on the repo, file flights.Rmd for more info
+
 
 
 
