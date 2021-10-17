@@ -1,0 +1,76 @@
+---
+  title: "R Notebook"
+output: html_notebook
+---
+  The data set can be found at https://www.kaggle.com/akulbahl/covid19-airline-flight-delays-and-cancellations
+There is information about the content of each data variable.
+
+The following chunk must be run first before loading your dataset to enter the necessary libraries to execute the present code
+
+```{r}
+#Enter the names of packages
+if(require("tidyverse")==FALSE){
+  install.packages("tidyverse")
+}
+
+library("tidyverse")
+```
+
+
+Q.1
+Find the number of flights operated for each airline per month and display the results in descending order.
+```{r}
+
+```
+
+
+Q.2
+Find and display in which month and which day of this month throughout the registration period there were the most type D cancellations for the departure airport with the code "LAX"
+```{r}
+
+```
+
+
+Q.3 Find and display the three-digit codes of the first 3 airports (destination airports) that had the most traffic during the hours (12.00-14.00) for the months of January to March.
+```{r}
+
+```
+
+Q.4 Find the flight with the second longest distance. Then display the average monthly delay in minutes (ARR_DELAY> 0) for the period January-April.
+```{r}
+
+```
+
+Q.5 
+Find the flight (flight code) with the most scheduled itineraries for the recording interval. Then for the specific flight to represent in a diagram all the itineraries as follows: horizontal axis the day of the month, vertical axis the real departure time and in a grid panel the months.
+```{r}
+
+```
+
+Q.6 
+Calculate and display which airport (departure location) had the most flights with delays (departures) of more than half an hour due to air carriers in the second ten days of February.
+```{r}
+
+```
+
+Q.7
+What was the route (flight) with the most cancellations type D. Display the details of the columns MKT_UNIQUE_CARRIER as DEST_STATE_NM for this route.
+```{r}
+
+```
+
+Q.8 
+Calculate and display how many cancellations of type A flights occurred on the 13th day of each month of the recording period. Visualize these flights as follows: horizontal axis departure airport, vertical axis arrival airport, coloring points based on airline ~ month
+```{r}
+
+```
+
+Q.9
+Find for each airport the total number of flights canceled during the registration period. If we consider that from each flight the airport earns from landing fees 1500 euros, find the total revenue lost for each airport per airline. Also visualize this loss of revenue as follows: horizontal axis airport, vertical axis loss of revenue and each point being colored based on the column of airline names.
+```{r}
+
+```
+
+
+
+
