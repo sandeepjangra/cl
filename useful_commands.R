@@ -249,7 +249,7 @@ iris%>%
   tally()->result
   result
   
-#mutate(create a new column)
+#mutate without pipelines(create a new column)
 mutate(iris,new_col=seq(1:nrow(iris)))
 
 iris%>%
@@ -257,7 +257,7 @@ iris%>%
 
 #Calculation of flower names of the group virginica that had the highest values of Sepal.Length (sequential)
 
-#1ος τρόπος(with variable creation!not a good approach in terms of computer memory)
+#1st way (with variable creation!not a good approach in terms of computer memory)
 f1<-cbind(iris,id=seq(1:nrow(iris)))
 f2<-filter(f1,Species=="virginica")
 f3<-arrange(f2,desc(Sepal.Length))
@@ -289,10 +289,53 @@ full_join(band_members,band_instruments)
 #more commands/reference cards at https://dplyr.tidyverse.org/reference/index.html
 
 
+person=data.frame(name=c("Stratos","Maria","Sofia","Nick","Tomas"),
+                  country=c("Greece","Italy","France","Portugal","Germany"))
+
+plays=data.frame(name=c("Stratos","Nick","Chris","Sofia","Helen","Tomas","Tomas","Stratos"),
+                 sport=c("Basketball","Football","Tennis","Figure skating","Tennis","Volleyball","Basketball","Handball"))
+
+##Any data editor in R??
+##You can use edit from rattle library
 
 
+##Install package rhandsontable
+rhandsontable:::editAddin()
 
 
+##Also consider using library dplyAssist() for data wrangling
+
+person%>%
+  full_join(plays,by="name")
+
+##if no by parameter specified then R will try to find one
+person%>%
+  full_join(plays)
+
+person%>%
+  inner_join(plays)
+
+person%>%
+  anti_join(plays)
+
+person%>%
+  semi_join(plays)
+
+union(person$name,plays$name)
+intersect(person$name,plays$name)
+setdiff(person$name,plays$name)
+setdiff(plays$name,person$name)
+
+
+##distinct rows
+df=data.frame(name=c("stratos","stratos","maria"),age=c(36,36,27),gender=c("m","m","f"))
+df
+
+df%>%
+  distinct()
+
+df%>%
+  distinct(gender)
 
 
 

@@ -31,4 +31,20 @@ https://www.youtube.com/watch?v=6LV_p3Zi-LM
 
 *Cheatsheets for ggplot2,dplyr and many more from RStudio
 https://www.rstudio.com/resources/cheatsheets/
+
   
+25/10/2021
+---------------
+Reccomended books
+1.https://www.oreilly.com/library/view/r-for-data/9781491910382/
+  R for Data Science
+
+2.https://www.springer.com/gp/book/9781461468486
+Applied predictive modeling
+
+3.https://www.oreilly.com/library/view/data-science-for/9781449374273/
+Data science for business
+  
+4.Machine Learning with R: Expert techniques for predictive modeling, 3rd Edition
+
+5.An Introduction to Statistical Learning (2nd edition)
