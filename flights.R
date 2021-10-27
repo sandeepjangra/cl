@@ -1,4 +1,3 @@
-#<<<<<<< HEAD
 ---title:"R Notebook"
 output:html_notebook---# The data set can be found at https://www.kaggle.com/akulbahl/covid19-airline-flight-delays-and-cancellations
   # There is information about the content of each data variable.
