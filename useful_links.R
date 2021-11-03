@@ -48,3 +48,24 @@ Data science for business
 4.Machine Learning with R: Expert techniques for predictive modeling, 3rd Edition
 
 5.An Introduction to Statistical Learning (2nd edition)
+
+31/10/2021
+---------------------
+1. Factominer library for dimension reduction
+http://factominer.free.fr/index.html
+
+2.Clustering with R
+https://www.r-bloggers.com/2021/04/cluster-analysis-in-r/
+  
+3. Try radiant app for machine learning
+https://shiny.rstudio.com/gallery/radiant.html
+
+or download and install radiant package
+
+4. Watch this playlist for dimension reduction and clustering with factominer
+and factoextra package (highly recommended)
+
+https://www.youtube.com/watch?v=aiqGyLGrQ48&list=PLnZgp6epRBbTsZEFXi_p6W48HhNyqwxIu
+  
+  
+  
