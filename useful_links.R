@@ -67,5 +67,20 @@ and factoextra package (highly recommended)
 
 https://www.youtube.com/watch?v=aiqGyLGrQ48&list=PLnZgp6epRBbTsZEFXi_p6W48HhNyqwxIu
   
-  
+5.Consider using data.table library for faster data wrangling
+(highly preferred on large datasets)
+https://www.youtube.com/watch?v=z2q-MN1HIBE&list=PLu6UwBFCnlEcb47DE-yWPjoEeZp10PDJz
+
+6.Data imputation with MICE package
+https://www.youtube.com/watch?v=MpnxwNXGV-E
+
+7.Data imputation with Amelia package
+https://www.youtube.com/watch?v=NeJ3D8rRTLc
+
+8.Data imputation with Hmisc package
+https://www.youtube.com/watch?v=zDFbeGF6BJQ&list=PL3GCqQd4xntAPuf_9jp8lCghZrGYUuNBs
+9.Data imputation with missForest package
+
+https://www.youtube.com/watch?v=zDFbeGF6BJQ&list=PL3GCqQd4xntAPuf_9jp8lCghZrGYUuNBs
+
   
