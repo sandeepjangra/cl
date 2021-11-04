@@ -296,7 +296,18 @@ plays=data.frame(name=c("Stratos","Nick","Chris","Sofia","Helen","Tomas","Tomas"
                  sport=c("Basketball","Football","Tennis","Figure skating","Tennis","Volleyball","Basketball","Handball"))
 
 ##Any data editor in R??
+
+##Consider installing this tool
+#https://cran.r-project.org/web/packages/DataEditR/vignettes/DataEditR.html (documentation)
+
+library(DataEditR)
+
+DataEditR::data_edit()
+
 ##You can use edit from rattle library
+
+##or you can rungithub
+##https://github.com/jienagu/DT-Editor
 
 
 ##Install package rhandsontable
