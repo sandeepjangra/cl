@@ -41,7 +41,8 @@ library(DataEditR);data_edit()# Shiny app for Data editing (Spreadsheet like)
 library(editData);editData()#Shiny app for Data editing (Spreadsheet like)
 library(rhandsontable);editAddin()#Shiny app for Data editing (Spreadsheet like)
 library(datasets.load);datasets.load()#Shiny app for loading datasets from each installed package
-  
+
+
 
 
 
