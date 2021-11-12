@@ -1,0 +1,46 @@
+---
+title: "Clustering"
+output: html_notebook
+---
+
+Types of clustering: 
+1)Partitioning Clustering:i know the number of the clusters a priori
+2)Hierachical Clustering: i don't know the number of the clusters a priori
+
+1)Partitioning Clustering (K-means) by Josh Stammer
+https://www.youtube.com/watch?v=4b5d3muPQmA
+
+and this nice animation
+
+https://www.youtube.com/watch?v=5I3Ei69I40s
+
+2)Hierachical Clustering by Josh Stammer
+https://www.youtube.com/watch?v=7xHsRkOdVwo
+
+3)Kmeans and Hclustering by Luis Serrano
+https://www.youtube.com/watch?v=QXOkPvFM6NU
+
+
+
+
+Libraries
+
+```{r}
+library(rattle)
+library(factoextra)
+library(cluster)
+```
+Using rattle GUI (K-means, Hierachical Clustering)
+```{r}
+rattle()
+```
+
+Using Factominer package
+Documentation:
+https://www.youtube.com/watch?v=EJqYTDTJJug
+
+or use Factoshiny: a shiny app for Factominer
+Documentation:
+https://www.youtube.com/watch?v=pmFCosCzRN8&list=PLnZgp6epRBbQ3UELPgndosV4dNYpT9l1-&index=11
+
+
