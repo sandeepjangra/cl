@@ -35,6 +35,13 @@ Factoshiny::PCAshiny(irispca)
 ```
 
 or execute PCA() from Factominer
+
+Please check videos:
+1)https://www.youtube.com/watch?v=pks8m2ka7Pk
+PCA with Factominer
+
+2)https://www.youtube.com/watch?v=6y0NDDQcIXo
+PCA with Factoshiny and Factominer
 ```{r}
 res=PCA(irispca,axes=c(1,1))#opt for axis or plane accordingly # results for axis 1
 res=PCA()
@@ -50,6 +57,12 @@ Multiple Correspondence Analysis
 Multiple Correspondence Analysis works in a similar way to PCA but for nominal variables.
 
 Example - Wg93 dataset: This data frame contains records of four questions on attitude towards science with responses on a five-point scale (1=agree strongly to 5=disagree strongly) and three demographic variables (sex, age and education).
+
+
+Also check video:MCA with Factominer and Factoshiny
+https://www.youtube.com/watch?v=0z30RDikYaw&list=PLnZgp6epRBbQ3UELPgndosV4dNYpT9l1-&index=9
+
+Also check CA package 
 ```{r}
 library(ca)
 library(FactoMineR)
