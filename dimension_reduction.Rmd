@@ -1,0 +1,69 @@
+---
+title: "Dimension reduction"
+output:
+  html_document:
+    df_print: paged
+  word_document: default
+  pdf_document: default
+---
+
+On R there are several techniques implemented by several packages that can be used to perform Dimension Reduction. We discuss here about the Principal Component technique (PCA) and the Multiple Correspondence analysis technique (MCA).
+
+Libraries to load. If not installed please do so
+
+```{r}
+library(FactoMineR)
+library(Factoshiny)
+```
+
+
+Principal Component Analysis
+Creates synthetic new variables from original variables that depict a percentage of the initial variation. New coordinate system is created and each row and column take new coordinates onto the new system. New variables are linear combinations of the original values and they are also uncorrelated.
+
+Suitable for: Continuous variables or variables that can be expressed as continuous
+Helpful for:As a first step before Clustering
+Also: PCA can also be used for data imputation
+
+Prepare Dataset
+```{r}
+irispca=iris[,1:4]
+irispca
+```
+Now insert irispca object in Factoshiny library and we get a GUI for PCA analysis
+```{r eval=FALSE, include=FALSE}
+Factoshiny::PCAshiny(irispca)
+```
+
+or execute PCA() from Factominer
+```{r}
+res=PCA(irispca,axes=c(1,1))#opt for axis or plane accordingly # results for axis 1
+res=PCA()
+summary(res)
+print(res)
+head(res$ind$coord)
+plot.PCA(res, axes=c(1, 1), choix="var")#variables on first principal axis
+plot.PCA(res, axes=c(1, 2), choix="ind")#individuals on first principal plane
+cbind(res$ind$coord[,1:2],irispca[,1:4])#Old and new coords after keeping 2 first
+#principal axes
+```
+Multiple Correspondence Analysis
+Multiple Correspondence Analysis works in a similar way to PCA but for nominal variables.
+
+Example - Wg93 dataset: This data frame contains records of four questions on attitude towards science with responses on a five-point scale (1=agree strongly to 5=disagree strongly) and three demographic variables (sex, age and education).
+```{r}
+library(ca)
+library(FactoMineR)
+data("wg93")
+head(wg93)
+str(wg93)
+#Run with Factoshiny
+Factoshiny::MCAshiny(wg93)
+#Run with MCA()
+res=MCA(wg93,method="indicator")
+plot.MCA(res,axes = c(1,1),choix=c("var"))
+
+```
+
+
+
+
