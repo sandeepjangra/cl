@@ -1,0 +1,152 @@
+---
+title: "Supervised Learning"
+output: html_notebook
+---
+
+This notebook is dedicated on binary classification
+
+
+Libraries
+```{r}
+library(caret)
+library(caretEnsemble)
+library(doParallel)
+library(parallel)
+library(MLeval)
+library(tictoc)
+library(readr)
+```
+
+Data:https://www.kaggle.com/mpwolke/cusersmarildownloadsgermancsv
+Check Kaggle.com for column description
+
+
+First download and import german dataset
+```{r}
+library(readr)
+german <- read_csv("german.csv")
+View(german)
+str(german)
+
+```
+
+Let's split data
+```{r}
+#use this line for reproducing same results each time
+#german$class=ifelse(german$class==1,"good","bad")
+#german$class=as.factor(german$class)
+#str(german)
+#Data Split
+german$class=as.factor(german$class)#must be converted into factor
+index = createDataPartition(german$class , p = 0.70, list = FALSE)
+train.data = german[index, ]
+test.data = german[-index, ]
+
+```
+
+Now let's train a logistic regression model with 10-fold cross validation
+and we will use ROC metric 
+```{r}
+train.control=trainControl(method = "cv", classProbs = TRUE,summaryFunction=twoClassSummary,number =10,savePredictions = TRUE,allowParallel = TRUE)
+set.seed(1234)
+model1 = train(
+  form = class ~ .,
+  data = train.data,
+  trControl =train.control ,
+  method = "glm",
+  family = "binomial",
+  metric="ROC"
+)
+
+print(model1)
+varImp(model1)
+model.prediction1<-predict(model1,test.data)
+print(model.prediction1)
+cf1=confusionMatrix(model.prediction1,test.data$class,positive = "good")
+print(cf1)
+
+
+
+```
+
+Now let's train a random forest with repeated 5-fold cross validation with parameter tuning(tuneLength) and parallel processing.
+Note:Execution time of this chunk takes about 1min on an I7 8th generation CPU
+```{r}
+train.control=trainControl(method = "cv", classProbs = TRUE,summaryFunction=twoClassSummary,number =10,savePredictions = TRUE,allowParallel = TRUE)
+
+cluster <- makeCluster(detectCores() - 1) # convention to leave 1 core for OS
+registerDoParallel(cluster)
+tic()
+set.seed(1234)
+model2 = train(
+  form = class ~ .,
+  data = train.data,
+  trControl =train.control ,
+  method = "ranger",
+  tuneLength=10,
+  metric="ROC"
+)
+toc()
+print(model2)
+plot(model2)
+model.prediction2<-predict(model2,test.data)
+print(model.prediction2)
+cf2=confusionMatrix(model.prediction2,test.data$class,positive = "good")
+print(cf2)
+stopCluster(cluster)
+
+
+```
+
+Now let's train a neural network with 5-fold cross validation with parameter tuning(tuneLength) and parallel processing.
+Note:Execution time of this chunk takes about 1min on an I7 8th generation CPU
+```{r}
+train.control=trainControl(method = "cv", classProbs = TRUE,summaryFunction=twoClassSummary,number =10,savePredictions = TRUE,allowParallel = TRUE)
+
+grid.tuning<-  expand.grid(size = seq(from = 1, to = 10, by = 1),
+                        decay = seq(from = 0.1, to = 0.5, by = 0.1))
+
+cluster <- makeCluster(detectCores() - 1) # convention to leave 1 core for OS
+registerDoParallel(cluster)
+tic()
+set.seed(1234)
+model3 = train(
+  form = class ~ .,
+  data = train.data,
+  trControl =train.control ,
+  method = "nnet",
+  tuneGrid=grid.tuning,
+  metric="ROC"
+)
+toc()
+print(model3)
+plot(model3)
+model.prediction3<-predict(model3,test.data)
+print(model.prediction3)
+cf3=confusionMatrix(model.prediction3,test.data$class,positive = "good")
+print(cf3)
+stopCluster(cluster)
+
+
+```
+ROC curves and Model comparison
+```{r}
+#Roc curves and AUC for each model
+roc.plots=evalm(list(model1,model2,model3),gnames = c("Logistic Regression","Random forest","Neural network"))
+print(roc.plots)
+
+#Model Comparison
+
+#Create exact same resampling for models
+resampled.models=resamples(list(Logistic.Regression=model1,
+                                Random.forest=model2,
+                                Neural.network=model3))
+print(resampled.models)
+summary(resampled.models)
+bwplot(resampled.models)
+xyplot(resampled.models)#compare models by 2
+dotplot(resampled.models)
+splom(resampled.models)#correlation matrix of models
+compare=diff(resampled.models)#statistical tests 
+summary(compare)
+```
