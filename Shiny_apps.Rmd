@@ -1,0 +1,22 @@
+---
+title: "Shiny apps"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+[*What is shiny:*]{.ul}
+
+**Shiny is an R package for developing interactive dashboards and web apps for data products with no knowledge of front-end or back-end programming**
+
+[*Shiny apps sources*]{.ul}
+
+Official website <https://shiny.rstudio.com>
+
+Video tutorial
+
+<https://shiny.rstudio.com/tutorial/>
+
+Video Tutorial
+
+<https://www.youtube.com/watch?v=MYVojGHeKAc&list=PLexAKolMzPcpIEh0tVRXgu3e2LzygfuRb&index=6>
