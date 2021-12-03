@@ -1,6 +1,12 @@
 ---
 title: "Supervised Learning"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+editor_options:
+  chunk_output_type: inline
 ---
 
 This notebook is dedicated on binary classification
@@ -32,15 +38,14 @@ str(german)
 
 Let's split data
 ```{r}
-#use this line for reproducing same results each time
-#german$class=ifelse(german$class==1,"good","bad")
-#german$class=as.factor(german$class)
-#str(german)
+
 #Data Split
 german$class=as.factor(german$class)#must be converted into factor
 index = createDataPartition(german$class , p = 0.70, list = FALSE)
 train.data = german[index, ]
 test.data = german[-index, ]
+train.data
+test.data
 
 ```
 
@@ -69,7 +74,7 @@ print(cf1)
 
 ```
 
-Now let's train a random forest with repeated 5-fold cross validation with parameter tuning(tuneLength) and parallel processing.
+Now let's train a random forest with 10-fold cross validation with parameter tuning(tuneLength) and parallel processing.
 Note:Execution time of this chunk takes about 1min on an I7 8th generation CPU
 ```{r}
 train.control=trainControl(method = "cv", classProbs = TRUE,summaryFunction=twoClassSummary,number =10,savePredictions = TRUE,allowParallel = TRUE)
@@ -98,7 +103,7 @@ stopCluster(cluster)
 
 ```
 
-Now let's train a neural network with 5-fold cross validation with parameter tuning(tuneLength) and parallel processing.
+Now let's train a neural network with 10-fold cross validation with parameter tuning(tuneLength) and parallel processing.
 Note:Execution time of this chunk takes about 1min on an I7 8th generation CPU
 ```{r}
 train.control=trainControl(method = "cv", classProbs = TRUE,summaryFunction=twoClassSummary,number =10,savePredictions = TRUE,allowParallel = TRUE)
@@ -141,6 +146,7 @@ print(roc.plots)
 resampled.models=resamples(list(Logistic.Regression=model1,
                                 Random.forest=model2,
                                 Neural.network=model3))
+summary(resampled.models)
 print(resampled.models)
 summary(resampled.models)
 bwplot(resampled.models)
@@ -150,3 +156,37 @@ splom(resampled.models)#correlation matrix of models
 compare=diff(resampled.models)#statistical tests 
 summary(compare)
 ```
+Automatic Machine Learning(AutoML)
+With H20 framework
+
+```{r}
+library(h2o)
+h2o.init()
+
+train.automl=as.h2o(train.data)
+test.automl=as.h2o(test.data)
+
+
+
+aml=h2o.automl(y="class",
+               training_frame =train.automl,
+               max_models = 10,
+               max_runtime_secs = 120
+                              )
+lb=aml@leaderboard
+lb
+
+prediction.automl = h2o.predict(aml@leader, test.automl[,-21])
+prediction.automl=as.data.frame(prediction.automl)
+                        
+
+caret::confusionMatrix(test.data$class, prediction.automl$predict,positive="good")
+# close h2o connection
+h2o.shutdown(prompt = F)
+
+
+
+
+```
+
+
