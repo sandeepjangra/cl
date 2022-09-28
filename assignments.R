@@ -1,6 +1,6 @@
 05/10/2021
 ------------
-Exercise: Write a script in R that solves a second or first degree equation
+Exercise: Write a script in R that solves a second degree equation
 
 Exercise: Write a script in R that finds the roots of the function f (x) = 3 * X ^ 4-2 * x ^ 3 + 2 * x-1
 in the interval [-10 ^ 6, 10 ^ 6] with step 0.5. As a root consider f (x) <= 0.05
